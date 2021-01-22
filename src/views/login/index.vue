@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Login Form</h3>
+        <h3 class="title">欢迎使用</h3>
       </div>
 
       <el-form-item prop="username">
@@ -17,6 +17,7 @@
           name="username"
           type="text"
           tabindex="1"
+          maxlength="15"
           auto-complete="on"
         />
       </el-form-item>
@@ -32,6 +33,7 @@
           :type="passwordType"
           placeholder="Password"
           name="password"
+          maxlength="15"
           tabindex="2"
           auto-complete="on"
           @keyup.enter.native="handleLogin"
@@ -40,13 +42,38 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
+      <el-form-item prop="verifycode">
+        <span class="svg-container">
+          <svg-icon icon-class="code" />
+        </span>
+        <el-input
+          v-model="loginForm.verifycode"
+          maxlength="6"
+          placeholder="Verification Code"
+          tabindex="3"
+          name="code"
+          type="text"
+          auto-complete="on"
+          class="identifyinput"
+        />
+        <div class="identifybox show-pwd">
+          <div @click="refreshCode">
+            <s-identify :identify-code="identifyCode" />
+          </div>
+        </div>
+      </el-form-item>
+      <el-button
+        :loading="loading"
+        type="primary"
+        tabindex="4"
+        style="width:100%;margin-bottom:30px;"
+        @click.native.prevent="handleLogin"
+      >登陆</el-button>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
-      <div class="tips">
+      <!-- <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span>
-      </div>
+      </div> -->
 
     </el-form>
   </div>
@@ -54,32 +81,51 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-
+import SIdentify from './imgcode/index.vue'
 export default {
   name: 'Login',
+  components: {
+    SIdentify
+  },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+        callback(new Error('请输入账号'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码长度小于6位'))
+      } else {
+        callback()
+      }
+    }
+    // eslint-disable-next-line no-unused-vars
+    const validateVerifycode = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入验证码'))
+      } else if (value !== this.identifyCode) {
+        console.log('validateVerifycode:', value)
+        callback(new Error('验证码不正确!'))
       } else {
         callback()
       }
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '18115182583',
+        password: '111111',
+        verifycode: ''
+
       },
+      identifyCodes: '1234567890',
+      identifyCode: '',
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        verifycode: [{ required: true, trigger: 'blur', validator: validateVerifycode }]
       },
       loading: false,
       passwordType: 'password',
@@ -93,6 +139,11 @@ export default {
       },
       immediate: true
     }
+  },
+  mounted() {
+    // 验证码初始化
+    this.identifyCode = ''
+    this.makeCode(this.identifyCodes, 4)
   },
   methods: {
     showPwd() {
@@ -120,6 +171,25 @@ export default {
           return false
         }
       })
+    }, // 生成随机数
+    randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+    // 切换验证码
+    refreshCode() {
+      this.identifyCode = ''
+      this.makeCode(this.identifyCodes, 4)
+    },
+    // 生成四位随机验证码
+    makeCode(o, l) {
+      // eslint-disable-next-line no-unused-vars
+      const XY = this.identifyCodes.length
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[
+          this.randomNum(0, this.identifyCodes.length)
+        ]
+      }
+      console.log(this.identifyCode)
     }
   }
 }

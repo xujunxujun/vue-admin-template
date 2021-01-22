@@ -4,6 +4,9 @@ module.exports = {
     parser: 'babel-eslint',
     sourceType: 'module'
   },
+  plugins: [
+    'vue'
+ ],
   env: {
     browser: true,
     node: true,
