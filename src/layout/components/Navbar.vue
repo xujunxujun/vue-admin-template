@@ -2,7 +2,7 @@
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
-    <breadcrumb class="breadcrumb-container" />
+    <breadcrumb class="breadcrumb-container" style="display:none" />
 
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
