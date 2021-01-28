@@ -42,7 +42,6 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     component: Layout,
@@ -53,6 +52,20 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
     }]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user',
+    alwaysShow: true,
+    meta: { title: '平台管理', icon: 'el-icon-setting' },
+    children: [{
+      path: 'user',
+      name: 'user',
+      component: () => import('@/views/xuser/index'),
+      meta: { title: '用户管理', icon: 'user', affix: true }
+    }
+    ]
   },
 
   {

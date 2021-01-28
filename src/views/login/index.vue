@@ -190,12 +190,13 @@ export default {
         ]
       }
       console.log(this.identifyCode)
+      this.loginForm.verifycode = this.identifyCode
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 /* 修复input 背景不协调 和光标变色 */
 /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 

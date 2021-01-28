@@ -151,7 +151,7 @@ export default {
 </script>
 <style scoped="scoped">
 #s-canvas {
-border-radius: 5px;
+border-radius: 8px;
 
 }
 </style>
