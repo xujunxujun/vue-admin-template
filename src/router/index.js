@@ -54,16 +54,16 @@ export const constantRoutes = [
     }]
   },
   {
-    path: '/user',
+    path: '/setting',
     component: Layout,
-    redirect: '/user',
+    redirect: '/setting/user',
     alwaysShow: true,
     meta: { title: '平台管理', icon: 'el-icon-setting' },
     children: [{
       path: 'user',
       name: 'user',
-      component: () => import('@/views/xuser/index'),
-      meta: { title: '用户管理', icon: 'user', affix: true }
+      component: () => import('@/views/xsetting/xuser/index.vue'),
+      meta: { title: '用户管理', icon: 'user' }
     }
     ]
   },
