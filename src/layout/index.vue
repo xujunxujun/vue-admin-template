@@ -68,6 +68,7 @@ export default {
       position: fixed;
       top: 0;
     }
+
   }
   .drawer-bg {
     background: #000;
@@ -95,4 +96,5 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
+
 </style>

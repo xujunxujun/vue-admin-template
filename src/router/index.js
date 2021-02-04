@@ -59,12 +59,27 @@ export const constantRoutes = [
     redirect: '/setting/user',
     alwaysShow: true,
     meta: { title: '平台管理', icon: 'el-icon-setting' },
-    children: [{
-      path: 'user',
-      name: 'user',
-      component: () => import('@/views/xsetting/xuser/index.vue'),
-      meta: { title: '用户管理', icon: 'user' }
-    }
+    children: [
+
+      {
+        path: 'room',
+        name: 'room',
+        component: () => import('@/views/xsetting/xdepartment/index.vue'),
+        meta: { title: '部门管理', icon: 'user' }
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: () => import('@/views/xsetting/xuser/index.vue'),
+        meta: { title: '用户管理', icon: 'user' }
+      },
+      {
+        path: 'menu',
+        name: 'menu',
+        component: () => import('@/views/xsetting/xmenu/index.vue'),
+        meta: { title: '菜单管理', icon: 'user' }
+      }
+
     ]
   },
 

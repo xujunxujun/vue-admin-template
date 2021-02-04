@@ -1,141 +1,6 @@
 <template>
-  <div class="user-container">121211<br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
-    <br>rqwq
+  <div class="user-container">
+    <label>User</label>
   </div>
 </template>
 <style scoped>
@@ -166,11 +31,8 @@ export default {
 <style lang="scss" scoped>
 .user {
   &-container {
-    margin: 30px;
+    margin: 10px;
   }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
+
 }
 </style>
