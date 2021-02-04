@@ -1,6 +1,9 @@
 <template>
   <div class="user-container">
-    <label>User</label>
+    <h1>User</h1>
+    <h1>{{ phone }}</h1>
+    <h1> {{ cachedViews }}</h1>
+
   </div>
 </template>
 <style scoped>
@@ -15,7 +18,9 @@ export default {
   computed: {
     ...mapGetters([
 
-      'name'
+      'name',
+      'phone',
+      'cachedViews'
     ])
   },
   watch: {
