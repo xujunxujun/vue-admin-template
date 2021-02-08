@@ -2,19 +2,20 @@
   <div class="job-container">
     <div style="display:inline-block;">
       <label class="radio-label" style="padding-left:0;">职务编码:</label>
-      <el-input v-model="selectnumber" class="job-input" placeholder="请输入职务编码" style="width:150px;" />
+      <el-input v-model="selectnumber" class="job-input" placeholder="请输入职务编码" style="width:200px;" />
     </div>
     <div style="display:inline-block;">
       <label class="radio-label" style="padding-left:0;">职务名称:</label>
-      <el-input v-model="selectname" class="job-input" placeholder="请输入职务名称" style="width:150px;" />
+      <el-input v-model="selectname" class="job-input" placeholder="请输入职务名称" style="width:200px;" />
     </div>
-    <el-button :loading="selectLoading" style="margin:0 20px;" type="primary" icon="el-icon-search" @click="handlefind">
+    <br v-if="device==='mobile'">
+    <el-button :loading="selectLoading" style="margin:0 10px;" type="primary" icon="el-icon-search" @click="handlefind">
       查询
     </el-button>
-    <el-button :loading="reLoading" style="margin:0 20px;" type="primary" icon="el-icon-refresh-right" @click="reLoading_way">
+    <el-button :loading="reLoading" style="margin:0 10px;" type="primary" icon="el-icon-refresh-right" @click="reLoading_way">
       重置
     </el-button>
-    <el-button :loading="reLoading" style="margin:0 20px;" type="primary" icon="el-icon-plus" @click="handleAdd">
+    <el-button :loading="reLoading" style="margin:0 10px;" type="primary" icon="el-icon-plus" @click="handleAdd">
       添加
     </el-button>
     <div class="job-table">
@@ -57,6 +58,7 @@
               size="mini"
               @click="handleEdit(scope.$index, scope.row)"
             >编辑</el-button>
+            <br v-if="device==='mobile'">
             <el-button
               size="mini"
               type="danger"
