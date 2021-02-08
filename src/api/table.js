@@ -7,3 +7,10 @@ export function getList(params) {
     params
   })
 }
+export function JobApi(data) {
+  return request({
+    url: '/api/job',
+    method: 'post',
+    data
+  })
+}

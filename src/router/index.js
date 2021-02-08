@@ -68,6 +68,12 @@ export const constantRoutes = [
         meta: { title: '部门管理', icon: 'user' }
       },
       {
+        path: 'job',
+        name: 'job',
+        component: () => import('@/views/xsetting/xjob/index.vue'),
+        meta: { title: '职务管理', icon: 'user' }
+      },
+      {
         path: 'user',
         name: 'user',
         component: () => import('@/views/xsetting/xuser/index.vue'),
