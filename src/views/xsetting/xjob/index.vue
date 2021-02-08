@@ -197,6 +197,7 @@ export default {
       JobApi(this.getdata).then(response => {
         this.list = response.data
         this.listLoading = false
+        if (this.device === 'mobile') { this.pageSize = 5 }
       })
     }, // 编辑
     handleEdit(index, row) {
