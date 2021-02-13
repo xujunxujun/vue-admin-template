@@ -21,7 +21,11 @@ export default {
       'name',
       'phone',
       'cachedViews'
-    ])
+    ]),
+
+    device() {
+      return this.$store.state.app.device
+    }
   },
   watch: {
 

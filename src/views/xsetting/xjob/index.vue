@@ -2,11 +2,11 @@
   <div class="job-container">
     <div style="display:inline-block;">
       <label class="radio-label" style="padding-left:0;">职务编码:</label>
-      <el-input v-model="selectnumber" class="job-input" placeholder="请输入职务编码" style="width:200px;" />
+      <el-input v-model="getdata.coding" class="job-input" placeholder="请输入职务编码" style="width:200px;" />
     </div>
     <div style="display:inline-block;">
       <label class="radio-label" style="padding-left:0;">职务名称:</label>
-      <el-input v-model="selectname" class="job-input" placeholder="请输入职务名称" style="width:200px;" />
+      <el-input v-model="getdata.name" class="job-input" placeholder="请输入职务名称" style="width:200px;" />
     </div>
     <br v-if="device==='mobile'">
     <el-button :loading="selectLoading" style="margin:0 10px;" type="primary" icon="el-icon-search" @click="handlefind">
@@ -111,8 +111,7 @@ export default {
   name: 'Job',
   data() {
     return {
-      selectnumber: '',
-      selectname: '',
+
       selectLoading: false,
       reLoading: false,
       listLoading: false,
@@ -121,11 +120,13 @@ export default {
       pageSize: 10,
       getdata: {
         dotype: 1003,
-        data: []
+        data: [],
+        coding: '',
+        name: ''
 
       },
       joblevel: [
-        { key: 0, display_name: '游客' },
+        { key: 0, display_name: '访客' },
         { key: 1, display_name: '员级' },
         { key: 2, display_name: '助级' },
         { key: 3, display_name: '中级' },
@@ -162,19 +163,63 @@ export default {
 
   },
   created() {
+    //  加载数据
     this.fetchData()
   },
 
   methods: {
+
     // 创建数据
     createData() {
+      this.getdata.data = []
       this.$refs['jobForm'].validate((valid) => {
+        if (valid) {
+          this.dialogFormVisible = false
+          this.getdata.dotype = 1001
+          this.getdata.data.push(this.chosedata)
 
+          JobApi(this.getdata).then(response => {
+            this.list = this.list.concat(response.data)
+
+            this.$notify({
+
+              message: '添加成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
       })
     },
     // 更新数据
     updateData() {
-      debugger
+      this.getdata.data = []
+      this.$refs['jobForm'].validate((valid) => {
+        if (valid) {
+          this.getdata.dotype = 1002
+          this.getdata.data.push(this.chosedata)
+          const temp_this = this
+
+          JobApi(this.getdata).then(response => {
+            response.data.forEach(function(v, i) {
+              temp_this.list.forEach(function(o, j) {
+                if (v.id === o.id) {
+                  o = v
+                  return
+                }
+              })
+            })
+
+            this.dialogFormVisible = false
+            this.$notify({
+
+              message: '更新成功',
+              type: 'success',
+              duration: 2000
+            })
+          })
+        }
+      })
     },
 
     // 格式化数据
@@ -183,14 +228,17 @@ export default {
     },
     // 筛选
     handlefind() {
-
+      this.getdata.dotype = 1005
+      this.fetchData()
     },
     // 重置筛选
     reLoading_way() {
       this.reLoading = true
-      this.selectnumber = ''
-      this.selectname = ''
+      this.getdata.coding = ''
+      this.getdata.name = ''
+      this.getdata.dotype = 1003
       this.reLoading = false
+      this.fetchData()
     }, fetchData() {
       this.listLoading = true
 
@@ -207,7 +255,41 @@ export default {
     },
     // 删除
     handleDelete(index, row) {
+      this.$confirm('此操作将永久删除, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.getdata.data = []
 
+        this.getdata.dotype = 1004
+        this.getdata.data.push(row)
+        const temp_this = this
+
+        JobApi(this.getdata).then(response => {
+          response.data.forEach(function(v, i) {
+            temp_this.list.forEach(function(o, j) {
+              if (v.id === o.id) {
+                temp_this.list.splice(j, 1)
+                temp_this.$notify({
+
+                  message: '删除成功',
+                  type: 'success',
+                  duration: 2000
+                })
+                return
+              }
+            })
+          })
+        })
+      }).catch(() => {
+        this.$notify({
+
+          type: 'info',
+          message: '已取消删除',
+          duration: 2000
+        })
+      })
     },
     // 新增
     handleAdd() {
