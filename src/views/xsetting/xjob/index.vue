@@ -106,7 +106,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import { JobApi } from '@/api/table'
+import { JobApi } from '@/api/xapi'
 export default {
   name: 'Job',
   data() {
